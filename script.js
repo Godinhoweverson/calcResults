@@ -3,12 +3,19 @@ let ul = document.getElementById("marks");
 let subjects = Number(prompt("How many subjects do you have?"));
 let marks = [];
 let index = 1
+    
 while(subjects > 0){
-    let mark = Number(prompt(`Type your mark in each subject between 0  - 100. Mark:${index}`));
-    if(mark === null){
+    let input = Number(prompt(`Type your mark in each subject between 0  - 100. Mark: ${index}`));
+    if(input === null){
         break;
     }
-    marks.push(mark);
+
+    if(input < 0 || input > 100 || Number.isNaN(input)){
+        alert("Please enter a number between 0 and 100");
+        continue;
+    }
+    
+    marks.push(input);
     index++
     subjects--
 }
@@ -30,8 +37,10 @@ for(let i = 0; i <marks.length; i++){
 
     let li = document.createElement("li");
     li.textContent = `Mark: ${marks[i]} - Grade: ${mark}!`
-    ul.appendChild(li);
+    ul.appendChild(li); 
+    
     ul.style.display = "flex";
 }
+
 
 
